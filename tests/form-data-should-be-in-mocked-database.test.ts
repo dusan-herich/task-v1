@@ -3,16 +3,17 @@ import { setupMock, mockDatabaseResponse, getMockClient } from '../utils/mock-db
 import { Client } from 'pg';
 import sinon from 'sinon';
 import { CareersPage } from '../pageObjects/CareersPage';
+import testData from '../data/testData.json';
 
 test.beforeAll(() => {
     setupMock();
     mockDatabaseResponse([
         {
             id: 1,
-            name: 'Test Candidate',
-            email: 'test.candidate@viableone.cz',
-            phone: '111 222 333',
-            message: 'Test Message.',
+            name: testData.user.name,
+            email: testData.user.email,
+            phone: testData.user.phone,
+            message: testData.user.message,
         },
     ]);
     sinon.stub(Client.prototype, 'query').callsFake(getMockClient().query);
@@ -26,7 +27,7 @@ test('form_data_should_be_stored_in_mocked_database', async ({ page }) => {
 
     // Fill out the form
     await careersPage.
-    fillContactForm('Test Candidate', 'test.candidate@viableone.cz', '111 222 333', 'Test Message.');
+    fillContactForm(testData.user.name, testData.user.email, testData.user.phone, testData.user.message);
 
     // Upload a CV file in accepted format (.pdf,.docx,.doc,.txt,.rtf,.odt)
     await careersPage.uploadCV('data/test.pdf');
@@ -39,14 +40,17 @@ test('form_data_should_be_stored_in_mocked_database', async ({ page }) => {
 
     // Verify db
     const result = await getMockClient().
-    query('SELECT * FROM form_submissions WHERE name = "Test Candidate" AND email = "test.candidate@viableone.cz"');
+    query(
+        'SELECT * FROM form_submissions WHERE name = $1 AND email = $2',
+        [testData.user.name, testData.user.email]
+    );
     expect(result.rows).toEqual([
         {
             id: 1,
-            name: 'Test Candidate',
-            email: 'test.candidate@viableone.cz',
-            phone: '111 222 333',
-            message: 'Test Message.',
+            name: testData.user.name,
+            email: testData.user.email,
+            phone: testData.user.phone,
+            message: testData.user.message,
         },
     ]);
 });
