@@ -22,10 +22,13 @@ jobs:
           node-version: 18
 
       - name: Install dependencies
+        run: npm install
+
+      - name: Install Playwright browsers
+        run: npx playwright install
+
+      - name: Run Playwright tests
         env:
           USER: ${{ secrets.USER }}
           PASSWORD: ${{ secrets.PASSWORD }}
-        run: npm install
-
-      - name: Run Playwright tests
         run: npx playwright test
