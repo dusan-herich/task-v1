@@ -1,14 +1,15 @@
 import { test, expect } from '@playwright/test';
 import { Client } from 'pg';
 import { CareersPage } from '../pageObjects/CareersPage';
-import {USER, PASSWORD} from "../secrets";
+import dotenv from 'dotenv';
+dotenv.config();
 
 // Database connection setup
 const client = new Client({
-    user: USER,
+    user: process.env.USER,
     host: 'school-main-db.c1va2wi6vhre.eu-west-1.rds.amazonaws.com',
     database: 'viableone',
-    password: PASSWORD,
+    password: process.env.PASSWORD,
     port: 5432,
 });
 
