@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { Client } from 'pg';
 import { CareersPage } from '../pageObjects/CareersPage';
+import testData from '../data/testData.json';
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -28,7 +29,7 @@ test('form_data_should_be_stored_in_database', async ({ page }) => {
     await careersPage.navigate();
 
     // Fill out the form
-    await careersPage.fillContactForm('Test Candidate', 'test.candidate@viableone.cz', '111 222 333', 'Test Message.');
+    await careersPage.fillContactForm(testData.user.name, testData.user.email, testData.user.phone, testData.user.message);
 
     // Upload a CV file in accepted format (.pdf,.docx,.doc,.txt,.rtf,.odt)
     await careersPage.uploadCV('data/test.pdf');
