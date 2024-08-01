@@ -29,7 +29,7 @@ test('form data should be stored in the mocked PostgreSQL database', async ({ pa
     fillContactForm('Test Candidate', 'test.candidate@viableone.cz', '111 222 333', 'Test Message.');
 
     // Upload a CV file in accepted format (.pdf,.docx,.doc,.txt,.rtf,.odt)
-    await careersPage.uploadCV('/Users/dusan/desktop/test.pdf');
+    await careersPage.uploadCV('data/test.pdf');
 
     // Approve GDPR
     await careersPage.approveGDPR();
