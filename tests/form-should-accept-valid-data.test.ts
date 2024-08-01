@@ -8,7 +8,7 @@ test('fill-out-form', async ({ page }) => {
 
     await careersPage.contactForm.waitFor({ state: 'visible' });
     await careersPage.fillContactForm('Test Candidate', 'test.candidate@viableone.cz', '111 222 333', 'Test Message.');
-    await careersPage.uploadCV('/Users/dusan/desktop/test.pdf');
+    await careersPage.uploadCV('data/test.pdf');
     await careersPage.approveGDPR();
     await careersPage.submitForm();
 
