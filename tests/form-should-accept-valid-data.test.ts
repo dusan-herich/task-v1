@@ -1,7 +1,7 @@
 import { test } from '@playwright/test';
 import { CareersPage } from '../pageObjects/CareersPage';
 
-test('fill-out-form', async ({ page }) => {
+test('form_should_accept_valid_data', async ({ page }) => {
     const careersPage = new CareersPage(page);
 
     await careersPage.navigate();

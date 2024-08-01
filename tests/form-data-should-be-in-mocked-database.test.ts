@@ -18,7 +18,7 @@ test.beforeAll(() => {
     sinon.stub(Client.prototype, 'query').callsFake(getMockClient().query);
 });
 
-test('form data should be stored in the mocked PostgreSQL database', async ({ page }) => {
+test('form_data_should_be_stored_in_mocked_database', async ({ page }) => {
     const careersPage = new CareersPage(page);
 
     // Open careers page with the form

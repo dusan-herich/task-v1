@@ -21,7 +21,7 @@ test.afterAll(async () => {
     await client.end(); // Disconnect from the database
 });
 
-test('form data should be stored in the PostgreSQL database', async ({ page }) => {
+test('form_data_should_be_stored_in_database', async ({ page }) => {
     const careersPage = new CareersPage(page);
 
     // Open careers page with the form
