@@ -52,7 +52,7 @@ test('form_data_should_be_stored_in_database', async ({ page }) => {
     // Ensure the database contains the expected row
     expect(result.rows).toEqual([
         {
-            id: expect.any(Number), // Expecting any number for the id
+            id: expect.any(Number), // Expecting any number for the ID - no knowledge about test db
             name: testData.user.name,
             email: testData.user.email,
             phone: testData.user.phone,
